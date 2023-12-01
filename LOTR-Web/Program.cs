@@ -20,6 +20,8 @@ builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddTransient<IPublicacionesRepository, PublicacionesRepository>();
 
 var app = builder.Build();
+app.MapControllerRoute(name: "areas",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 app.MapDefaultControllerRoute();
 app.UseStaticFiles();
 app.UseHttpsRedirection();
