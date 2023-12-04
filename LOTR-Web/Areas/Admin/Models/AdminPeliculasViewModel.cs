@@ -5,8 +5,9 @@ namespace LOTR_Web.Areas.Admin.Models
     public class AdminPeliculasViewModel
     {
 
-        public PeliculasModel Peliculas { get; set; } = null!;
-        public IEnumerable<EstudiosModel> Estudios { get; set; } = null!;
+        public PeliculasModel? Peliculas { get; set; }
+        public IEnumerable<EstudiosModel>? Estudios { get; set; }
+        public IFormFile? Archivo { get; set; }
     }
     public class EstudiosModel
     {

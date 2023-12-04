@@ -1,5 +1,6 @@
 ﻿using LOTR_Web.Areas.Admin.Models;
 using LOTR_Web.Models.Entities;
+using LOTR_Web.Repositories.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LOTR_Web.Areas.Admin.Controllers
@@ -7,13 +8,41 @@ namespace LOTR_Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class PeliculasController : Controller
     {
+        private readonly PeliculasRepository _peliculasRepository;
+        private readonly EstudiosRepository _repoEstudio;
+
+        public PeliculasController(PeliculasRepository peliculasRepository,EstudiosRepository repoEstudio)
+        {
+            _peliculasRepository = peliculasRepository;
+            _repoEstudio = repoEstudio;
+        }
         public IActionResult Index()
         {
-            return View();
+            var datos=_peliculasRepository.GetPeliculas().Select(x=> new PeliculasViewModel()
+            {
+                Nombre = x.Nombre,
+                Id = x.Id,
+                Descripcion=x.Descripcion,
+                NombreEstudio=x.IdEstudioNavigation.Nombre,
+                NombreUsuario=x.IdUsuarioNavigation.Correo,
+                FechaPublicacion=x.FechaPublicacion
+                
+
+            });
+            
+            return View(datos);
         }
         public IActionResult Agregar()
         {
-            return View();
+            AdminPeliculasViewModel vm=new AdminPeliculasViewModel();
+            
+            vm.Estudios=_repoEstudio.GetEstudios().Select(x=>new EstudiosModel()
+            {
+                Id=x.Id,
+                Nombre=x.Nombre,
+            });
+
+            return View(vm);
         }
         [HttpPost]
         public IActionResult Agregar(AdminPeliculasViewModel vm) 

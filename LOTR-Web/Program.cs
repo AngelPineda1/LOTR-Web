@@ -18,7 +18,8 @@ builder.Services.AddDbContext<LotrdbContext>(options =>
 builder.Services.AddTransient<IRepo, Repo>();
 builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddTransient<IPublicacionesRepository, PublicacionesRepository>();
-
+builder.Services.AddTransient<PeliculasRepository>();
+builder.Services.AddTransient<EstudiosRepository>();
 var app = builder.Build();
 app.MapControllerRoute(name: "areas",
             pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
