@@ -1,0 +1,429 @@
+:root{
+    --primario: #232D3F;
+    --primarioOscuro: #89119d;
+    --secundario: #ffce00;
+    --secundarioOscuro: rgb(233,287,2);
+    --blanco: #fff;
+    --negro: #000000;
+    --fuenteprincipal: 'Staaliches', cursive;
+    --prueba: #005B41;
+    --fondo: #F4EAE0;
+    --sectiondelwey: #E5E5CB;
+    --librosbg: #F2F7A1;
+}
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;     /*Para que que un ream sea 10px */
+}
+  *,*:before, *:after {
+    box-sizing: inherit;
+}
+*{
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+
+
+header{
+    height: 100vh;
+    width: 100%;
+    background-image: url(../img/p4.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+
+.navbar{
+    position: absolute;
+    padding: 0 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    position: sticky;
+}
+
+.navbar a{
+    color: var(--negro);
+}
+
+.navbar .logo a{
+    font-size: 9rem;
+    font-weight: bold;
+}
+
+.navbar .nav-links ul{
+    display: flex;
+}
+
+.navbar .nav-links ul li{
+    margin: 0 2.5rem;
+}
+
+.navbar .nav-links ul li.active a{
+    color: var(--secundario);
+    font-weight: 600;
+}
+.logo{
+    font-size: 1.5rem;
+    transition: 1s all;
+    border-radius: 1rem;
+}
+.logo:hover{
+    background-color: rgba(255, 255, 255, 0.293);
+}
+.titleContainer{
+    position: relative;
+    padding: 20px;
+}
+.titleContainer img{
+    height: auto;
+    width: 78%;
+}
+.navbar .menu-slide{
+    display: none;
+    position: absolute;
+    top: 5rem;
+    right: 5rem;
+    width: 3.5rem;
+}
+
+.nav-links ul li a{
+    font-size: 1.8rem;
+}
+
+.navbar .logo .titleContainer p {
+    font-size: 3rem;
+}
+@media screen and (max-width: 900px) {
+    .navbar .logo a{
+        position: absolute;
+        top: 5rem;
+        left: 5rem;
+    }
+    
+
+    .navbar .menu-slide{
+        display: block;
+        cursor: pointer;
+    }
+    .nav-links{
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.200);
+    backdrop-filter: blur(.5rem);
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: -100%;
+    transition: all 0.5s ease;
+    font-size: 10rem;
+    }
+    .nav-links.mobile-menu{
+        margin-left: 0;
+    }
+
+    .nav-links ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar .nav-links ul li{
+        font-size: 2rem;
+        margin: 2.5rem 0;
+    }
+} 
+
+/* Alexis */
+
+@media screen and (min-width: 570px) {
+    .mainImgMob{
+        visibility: hidden;
+    }
+    .infoSection {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 2rem; /* Añade un padding para no estar tan pegado al borde */
+        height: auto;
+
+      }
+      .mobNav{
+        visibility: hidden;
+      }
+      .franchiseInfo, .otherData {
+        width: 45%; /* Ajusta como necesites */
+        margin: 2rem;
+      }
+  }
+
+.infoSection{
+    height: 80%;
+    padding: 0 5%;
+}
+.textDescDiv{
+    color: rgba(255, 238, 0, 0.825);
+    background-color: rgba(16, 15, 12, 0.436);
+    border-radius: 5px;
+    box-shadow: 0rem 0rem 1rem .1rem rgba(255, 217, 0, 0.12);
+    margin-top: 2rem;
+}
+
+.franchiseInfo{
+    background-color: rgba(21, 20, 20, 0.7);
+    border-radius: 1rem;
+    text-align: center;
+    color: rgb(232, 232, 232);
+    box-shadow: .5rem .5rem .5rem .1rem black;
+    font-size: 1.5rem;
+    text-align: justify;
+    padding: 1rem;
+    width: 50%;
+}
+.franchiseInfo h1{
+    padding: 1rem;
+}
+.otherData{
+    background-color: rgba(21, 20, 20, 0.7);
+    text-align: center;
+    border-radius: 1rem;
+    color: rgb(232, 232, 232);
+    box-shadow: .5rem .5rem .5rem .1rem black;
+    width: 50%;
+}
+.otherData:hover{
+    background-color: rgba(21, 20, 20, 0.856);
+}
+.franchiseInfo:hover{
+    background-color: rgba(21, 20, 20, 0.856);
+}
+.mainIndexContent{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-image: url(../img/mainBack.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.tolkienInfo{
+    padding: 1rem;
+    height: auto;
+  }
+
+.tolkienInfo p{
+    text-align: justify;
+    font-size: 1.5rem;
+}
+
+  .tolkienInfo > img{
+    height: 14rem;
+    width: 12.5rem;
+    border: 5px solid black;
+    border-radius: 1rem;
+  }
+
+  .checkbtn {
+    order: -1; /* move the label to the start of the flex container */
+}
+
+.info-header{
+    margin: auto 0;
+    padding: 5rem;
+}
+
+.info-header h2{
+    color: var(--secundario);
+    font-size: 4rem;
+}
+
+.info-header p{
+    padding: 2.5rem 0;
+    font-size: 2rem;
+    max-width: 50%;
+}
+
+
+
+
+.mainImgMob{
+    width: 100%;
+}
+h1{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.mainImg{
+    width: 100%;
+}
+
+.lbltitle{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2.5rem;
+    color: black;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0rem 0rem 1rem .1rem rgba(255, 217, 0, 0.12);
+    opacity: 1;
+}
+
+/* Page Border */
+
+
+/* libros */
+.img-libros{
+    width: 25%;
+    padding: 8rem;
+    cursor: pointer;
+}
+
+.img-libros img{
+    width: 100%;
+    transition: all 0.3s ease 0s;
+}
+
+.img-libros img:hover{
+    transform: scale(1.2);
+}
+
+.libros-tam{
+    width: 100%;
+    background-color: var(--librosbg);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.libros-tam h2{
+    justify-content: center;
+}
+
+.textContents{
+    height: auto;
+    padding: 2rem;
+}
+
+.lbltext{
+    font-size: 2rem;
+}
+
+
+/* Datos */
+.datos-tam{
+    width: 100%;
+    background-color: var(--primario);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* Juegos */
+.Juegos-tam{
+    width: 100%;
+    background-color: var(--blanco);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img-juegos{
+    width: 25%;
+    padding: 8rem;
+}
+
+.img-juegos img{
+    width: 100%;
+}
+
+
+/* Peliculas */
+.Peliculas-tam{
+    width: 100%;
+    background-color: var(--blanco);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img-peliculas{
+    width: 25%;
+    padding: 8rem;
+
+}
+
+.img-peliculas img{
+    width: 100%;
+
+}
+
+/* Personajes*/
+.Personajes-tam{
+    width: 100%;
+    background-color: var(--blanco);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgPersonajes{
+    width: 25%;
+    padding: 8rem;
+}
+
+.imgPersonajes img{
+    width: 100%;
+}
+
+
+/* Scroll Up */
+
+#scrollUp {
+    bottom: 15px;
+    right: 30px;
+    width: 70px;
+    height: 80px;
+    margin-bottom: -10px;
+    padding: 0 5px 20px 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #0b0b0b;
+    -webkit-transition: margin-bottom 150ms linear;
+    -moz-transition: margin-bottom 150ms linear;
+    -o-transition: margin-bottom 150ms linear;
+    transition: margin-bottom 150ms linear;
+}
+
+#scrollUp:hover {
+    margin-bottom: 0;
+}
+
+#scrollUp:before {
+    background: #ccc;
+    font-family: "fontawesome";
+    font-size: 2.4em;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    color: #131212;
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+    line-height: 45px;
+    content: "\f106";
+    opacity: 1;
+}
+
+

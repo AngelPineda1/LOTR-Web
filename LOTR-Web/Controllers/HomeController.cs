@@ -21,8 +21,8 @@ namespace LOTR_Web.Controllers
         {
             /*Ejemplo*/
 
-            Publicaciones Publicacion = _repo.PublicacionesRepository.GetPublicacionById(1);
-            Usuario User = _repo.UsuarioRepository.GetUsuarioById(1);
+            //Publicaciones Publicacion = _repo.PublicacionesRepository.GetPublicacionById(1);
+            //Usuario User = _repo.UsuarioRepository.GetUsuarioById(1);
 
             return View();
         }

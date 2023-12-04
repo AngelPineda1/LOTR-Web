@@ -14,7 +14,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Agregar()
+        public IActionResult Agregar(int id)
         {
             return View();
         }
