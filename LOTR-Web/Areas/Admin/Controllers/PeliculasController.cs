@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LOTR_Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class PeliculasController : Controller
     {
         public IActionResult Index()

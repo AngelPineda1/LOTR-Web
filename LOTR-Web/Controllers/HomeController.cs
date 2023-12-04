@@ -26,5 +26,9 @@ namespace LOTR_Web.Controllers
 
             return View();
         }
+        public IActionResult Peliculas()
+        {
+            return View();
+        }
     }
 }

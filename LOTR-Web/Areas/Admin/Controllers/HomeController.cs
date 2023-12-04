@@ -2,7 +2,8 @@
 
 namespace LOTR_Web.Areas.Admin.Controllers
 {
-    public class AdminController : Controller
+    [Area("Admin")]
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {
