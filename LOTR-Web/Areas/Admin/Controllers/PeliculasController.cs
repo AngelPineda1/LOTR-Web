@@ -36,7 +36,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
         {
             AdminPeliculasViewModel vm=new AdminPeliculasViewModel();
             
-            vm.Estudios=_repoEstudio.GetEstudios().Select(x=>new EstudiosModel()
+            vm.Estudios=_repoEstudio.GetAll(Peliculas).Select(x=>new EstudiosModel()
             {
                 Id=x.Id,
                 Nombre=x.Nombre,
@@ -47,6 +47,23 @@ namespace LOTR_Web.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Agregar(AdminPeliculasViewModel vm) 
         {
+            if (string.IsNullOrWhiteSpace(vm.Peliculas.Nombre))
+            {
+                ModelState.AddModelError("", "Debe ingresar el nombre de la pelicula");
+            }
+            if (string.IsNullOrWhiteSpace(vm.Peliculas.Descripcion))
+            {
+                ModelState.AddModelError("", "Debe ingresar la descripcion de la pelicula");
+            }
+            if (vm.Peliculas.FechaPublicacion == DateTime.MinValue)
+            {
+                ModelState.AddModelError("", "Debe ingresar la fecha de publicacion de la pelicula");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _peliculasRepository.Insert(vm);
+            }
             return View(); 
         }
         public IActionResult Editar(int id)
