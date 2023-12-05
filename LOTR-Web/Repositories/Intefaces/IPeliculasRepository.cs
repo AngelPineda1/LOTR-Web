@@ -1,9 +1,14 @@
-﻿using LOTR_Web.Models.Entities;
+﻿using LOTR_Web.Areas.Admin.Models;
+using LOTR_Web.Models.Entities;
 
 namespace LOTR_Web.Repositories.Intefaces
 {
-    public class IPeliculasRepository
+    public interface IPeliculasRepository
     {
-        Peliculas GetPeliculas(); 
+        IEnumerable<Peliculas> GetPeliculas();
+        void InsertPelicula(Peliculas p);
+        Peliculas GetId(int id);
+        void UpdatePelicula(Peliculas p);
+        void DeletePelicula(Peliculas p);
     }
 }

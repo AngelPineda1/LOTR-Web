@@ -1,17 +1,20 @@
 ﻿using LOTR_Web.Models.Entities;
+using LOTR_Web.Repositories.Intefaces;
 
 namespace LOTR_Web.Repositories.Repositorios
 {
-    public class EstudiosRepository : GenericRepository<Estudio>
+    public class EstudiosRepository : GenericRepository<Estudio>, IEstudiosRepository
     {
         private readonly LotrdbContext _context;
+
         public EstudiosRepository(LotrdbContext context) : base(context)
         {
-            _context=context;
+            _context = context;
         }
-        public IEnumerable<Estudio> GetEstudios()
+
+        public IEnumerable<Estudio> GetAll()
         {
-            return (IEnumerable<Estudio>)_context.Peliculas.OrderBy(x=>x.Nombre);
+        return _context.Estudio.OrderBy(x => x.Nombre);
         }
     }
 }

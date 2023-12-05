@@ -5,5 +5,6 @@
         IUsuarioRepository UsuarioRepository { get; }
         IPublicacionesRepository PublicacionesRepository { get; }
         IPeliculasRepository PeliculasRepository { get; }
+        IEstudiosRepository EstudiosRepository { get; }
     }
 }
