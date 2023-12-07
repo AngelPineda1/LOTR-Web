@@ -17,26 +17,38 @@ namespace LOTR_Web.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var datos=_repo.LibrosRepository.GetAll().Select(x=>new LibrosViewModel()
+            {
+                Id = x.Id,
+                Nombre = x.Nombre,
+            });
+           
+            
+            return View(datos);
+        }
+        public IActionResult VerDetalles(int id)
+        {
+            var datos = _repo.LibrosRepository.GetLibro(id);
+            return View(datos);
         }
         public IActionResult Agregar()
         {
-            AdminLibrosViewModel model = new AdminLibrosViewModel();
-            model.Autor = _repo.AutorRepository.GetAllAutores().Select(x => new AutorModel()
+            AdminLibrosViewModel vm= new AdminLibrosViewModel();
+            vm.Autor = _repo.AutorRepository.GetAllAutores().Select(x => new AutorModel()
             {
                 Id = x.Id,
                 Nombre = x.Nombre?? ""
             }) ;
-            return View(model);
+            return View(vm);
         }
         [HttpPost]
-        public IActionResult Agregar(AdminLibrosViewModel model)
+        public IActionResult Agregar(AdminLibrosViewModel vm)
         {
-            if (string.IsNullOrWhiteSpace(model.Libros.Nombre))
+            if (string.IsNullOrWhiteSpace(vm.Libros.Nombre))
             {
                 ModelState.AddModelError("", "Escriba el nombre del libro");
             }
-            if (string.IsNullOrWhiteSpace(model.Libros.Descripcion))
+            if (string.IsNullOrWhiteSpace(vm.Libros.Descripcion))
             {
                 ModelState.AddModelError("", "Escriba la descripcion del libro");
             }
@@ -44,7 +56,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
             //{
             //    ModelState.AddModelError("", "Escriba la editorial del libro");
             //}
-            if (string.IsNullOrWhiteSpace(model.Libros.TiendaOficial))
+            if (string.IsNullOrWhiteSpace(vm.Libros.TiendaOficial))
             {
                 ModelState.AddModelError("", "Escriba la tienda oficial");
             }
@@ -52,97 +64,183 @@ namespace LOTR_Web.Areas.Admin.Controllers
             //{
             //    ModelState.AddModelError("", "Ingrese la fecha de publicacion");
             //}
-            
+            if (vm.Archivo != null)
+            {
+                //MIME TYPE
+                if (vm.Archivo.ContentType != "image/png")
+                {
+                    ModelState.AddModelError("", "Solo se permiten imagenes PNG");
+                }
+                if (vm.Archivo.Length > 500 * 1024)
+                {
+                    ModelState.AddModelError("", "Solo se permiten archivos no mayores a 500KB");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 
-                model.Libros.IdUsuario = 1;
-                model.Libros.FechaPublicacion = DateTime.Now;
+                vm.Libros.IdUsuario = 1;
+                vm.Libros.FechaPublicacion = DateTime.Now;
                 Libros x = new Libros()
                 {
-                    Nombre = model.Libros.Nombre,
-                    Descripcion = model.Libros.Descripcion,
-                    IdAutor = model.Libros.IdAutor,
-                    IdUsuario= model.Libros.IdUsuario,
-                    FechaPublicacion = model.Libros.FechaPublicacion,
-                    Editorial= model.Libros.Editorial,
-                    TiendaOficial= model.Libros.TiendaOficial
+                    Nombre = vm.Libros.Nombre,
+                    Descripcion = vm.Libros.Descripcion,
+                    IdAutor = vm.Libros.IdAutor,
+                    IdUsuario= vm.Libros.IdUsuario,
+                    FechaPublicacion = vm.Libros.FechaPublicacion,
+                    Editorial= vm.Libros.Editorial,
+                    TiendaOficial= vm.Libros.TiendaOficial
                 };
 
                 _repo.LibrosRepository.InsertLibro(x);
+                if (vm.Archivo == null)
+                {
+                    //obtener id del producto
+                    //copiar el archivo no disponible y cambiar el nombre por el id
+
+                    System.IO.File.Copy("wwwroot/img/imagen-no-disponible.png", $"wwwroot/libros/{x.Id}.png");
+                }
+                else
+                {
+                    System.IO.FileStream fs = System.IO.File.Create($"wwwroot/libros/{x.Id}.png");
+                    vm.Archivo.CopyTo(fs);
+                    fs.Close();
+                }
                 return RedirectToAction("Index");
             }
-            model.Autor = _repo.AutorRepository.GetAllAutores().Select(x => new AutorModel()
+            vm.Autor = _repo.AutorRepository.GetAllAutores().Select(x => new AutorModel()
             {
                 Id = x.Id,
                 Nombre = x.Nombre ?? ""
             });
-            return View(model);
+            return View(vm);
         }
-        //public IActionResult Editar(int id)
-        //{
-        //    var datos = Repo.PublicacionesRepository.GetPublicacionById(id);
-        //    if (datos == null)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
+        public IActionResult Editar(int id)
+        {
+            AdminLibrosViewModel vm = new();
+            var datos = _repo.LibrosRepository.GetLibro(id);
+            if (datos == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                vm.Libros = new LibrosModel();
+                vm.Libros.TiendaOficial = datos.TiendaOficial;
+                vm.Libros.Editorial = datos.Editorial;
+                vm.Libros.Nombre = datos.Nombre;
+                vm.Libros.Descripcion = datos.Descripcion;
+                vm.Libros.IdAutor = datos.IdAutor;
+                vm.Libros.Id=datos.Id;
+                vm.Autor= _repo.AutorRepository.GetAllAutores().Select(x => new AutorModel()
+                {
+                    Id = x.Id,
+                    Nombre = x.Nombre ?? ""
+                });
+                return View(vm);
+            }
 
-        //        return View(datos);
-        //    }
+        }
 
-        //}
+        [HttpPost]
+        public IActionResult Editar(AdminLibrosViewModel vm)
+        {
+            if (string.IsNullOrWhiteSpace(vm.Libros.Nombre))
+            {
+                ModelState.AddModelError("", "Escriba el nombre del libro");
+            }
+            if (string.IsNullOrWhiteSpace(vm.Libros.Descripcion))
+            {
+                ModelState.AddModelError("", "Escriba la descripcion del libro");
+            }
+            //if (string.IsNullOrWhiteSpace(libros.Editorial))
+            //{
+            //    ModelState.AddModelError("", "Escriba la editorial del libro");
+            //}
+            if (string.IsNullOrWhiteSpace(vm.Libros.TiendaOficial))
+            {
+                ModelState.AddModelError("", "Escriba la tienda oficial");
+            }
+            //if (libros.FechaPublicacion == DateTime.MinValue)
+            //{
+            //    ModelState.AddModelError("", "Ingrese la fecha de publicacion");
+            //}
+            if (vm.Archivo != null)
+            {
+                //MIME TYPE
+                if (vm.Archivo.ContentType != "image/png")
+                {
+                    ModelState.AddModelError("", "Solo se permiten imagenes PNG");
+                }
+                if (vm.Archivo.Length > 500 * 1024)
+                {
+                    ModelState.AddModelError("", "Solo se permiten archivos no mayores a 500KB");
+                }
+            }
 
-        //[HttpPost]
-        //public IActionResult Editar(Publicaciones p)
-        //{
-        //    if (string.IsNullOrWhiteSpace(p.Texto))
-        //    {
-        //        ModelState.AddModelError("", "Escriba el texto de la publicacion");
-        //    }
-        //    else
-        //    {
+            if (ModelState.IsValid)
+            {
 
-        //        if (ModelState.IsValid)
-        //        {
-        //            var datos = Repo.PublicacionesRepository.GetPublicacionById(p.Id);
+                
+                var datos = _repo.LibrosRepository.GetLibro(vm.Libros.Id);
+                if (datos == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                datos.TiendaOficial = vm.Libros.TiendaOficial;
+                datos.Editorial = vm.Libros.Editorial;
+                datos.Nombre = vm.Libros.Nombre;
+                datos.Descripcion = vm.Libros.Descripcion;
+                datos.IdAutor = vm.Libros.IdAutor;
+                
+                _repo.LibrosRepository.UpdateLibro(datos);
+                if (vm.Archivo != null)
+                {
 
-        //            if (datos == null)
-        //            {
-        //                return RedirectToAction("Index");
-        //            }
-        //            datos.Fecha = p.Fecha;
-        //            datos.Texto = p.Texto;
-        //            Repo.PublicacionesRepository.UpdatePublicacion(datos);
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
-        //    return View(p);
-        //}
-        //public IActionResult Eliminar(int id)
-        //{
-        //    var datos = Repo.PublicacionesRepository.GetPublicacionById(id);
-        //    if (datos == null)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
+                    System.IO.FileStream fs = System.IO.File.Create($"wwwroot/Libros/{vm.Libros.Id}.png");
+                    vm.Archivo.CopyTo(fs);
+                    fs.Close();
+                }
 
-        //        return View(datos);
-        //    }
-        //}
-        //[HttpPost]
-        //public IActionResult Eliminar(Publicaciones p)
-        //{
-        //    var datos = Repo.PublicacionesRepository.GetPublicacionById(p.Id);
-        //    if (datos == null)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    Repo.PublicacionesRepository.DeletePublicacion(datos);
-        //    return RedirectToAction("Index");
-        //}
+                return RedirectToAction("Index");
+            }
+            vm.Autor = _repo.AutorRepository.GetAllAutores().Select(x => new AutorModel()
+            {
+                Id = x.Id,
+                Nombre = x.Nombre ?? ""
+            });
+            return View(vm);
+        }
+        public IActionResult Eliminar(int id)
+        {
+            var datos = _repo.LibrosRepository.GetLibro(id);
+            if (datos == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+
+                return View(datos);
+            }
+        }
+        [HttpPost]
+        public IActionResult Eliminar(Libros l)
+        {
+            var datos = _repo.LibrosRepository.GetLibro(l.Id);
+            if (datos == null)
+            {
+                return RedirectToAction("Index");
+            }
+            _repo.LibrosRepository.DeleteLibro(datos);
+            var ruta = $"wwwroot/Libros/{l.Id}.png";
+            if (System.IO.File.Exists(ruta))
+            {
+                System.IO.File.Delete(ruta);
+            }
+            return RedirectToAction("Index");
+            
+        }
     }
 }

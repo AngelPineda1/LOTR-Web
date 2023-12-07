@@ -12,11 +12,7 @@
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\menu.js" />
-    <None Include="wwwroot\js\scrollUp.js" />
+    <Folder Include="wwwroot\libros\" />
   </ItemGroup>
 
   <ItemGroup>

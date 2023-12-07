@@ -1,0 +1,20 @@
+﻿@model LOTR_Web.Models.Entities.Libros
+@{
+    ViewData["Title"] = "VerDetalles";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="verObjectContainer">
+    <img src="~/libros/@(Model.Id).png" />
+    <div class="objDivContainer">
+
+        <section>
+            <h1>@Model.Nombre</h1>
+        </section>
+        <section>
+            <h3>@Model.Editorial</h3>
+            <p>@Model.Descripcion</p>
+        </section>
+    </div>
+</div>
+

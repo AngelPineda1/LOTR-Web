@@ -12,9 +12,9 @@
     <label>Donde conseguirlo:</label>
     <input type="url" asp-for="Libros.TiendaOficial"/>
     <div>
-        <label>Portada</label>
-        <input type="file" />
-        <img src="/img/JRRTolkien.jpg" />
+        <label for="imagen">Portada</label>
+        <input type="file" id="imagen" accept="image/png" onchange="previewImagen()" asp-for="Archivo"/>
+        <img id="imagen-preview" src="~/img/imagen-no-disponible.png">
 
     </div>
     ¿Dirigido por?
@@ -31,3 +31,26 @@
         <input type="button" value="Cancelar" />
     </a>
 </form>
+<script>
+
+    function previewImagen() {
+        const inputImagen = document.getElementById('imagen');
+        const imagenPreview = document.getElementById('imagen-preview');
+
+        const archivoImagen = inputImagen.files[0];
+
+        if (archivoImagen) {
+            const lector = new FileReader();
+
+            lector.onload = function (e) {
+                imagenPreview.src = e.target.result;
+                imagenPreview.style.display = 'block';
+            };
+
+            lector.readAsDataURL(archivoImagen);
+        } else {
+            imagenPreview.src = '#';
+            imagenPreview.style.display = 'none';
+        }
+    }
+</script>

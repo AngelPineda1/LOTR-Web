@@ -4,6 +4,7 @@
     {
         public LibrosModel? Libros { get; set; }
         public IEnumerable<AutorModel>? Autor { get; set; }
+        public IFormFile? Archivo { get; set; }
     }
     public class LibrosModel
     {

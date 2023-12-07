@@ -1,93 +1,22 @@
-﻿
+﻿@model IEnumerable<LOTR_Web.Areas.Admin.Models.LibrosViewModel>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
 <div class="librosContainer">
+    @foreach (var item in Model)
+    {
+        
     <div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
+        <a href="~/Admin/Libros/VerDetalles/@item.Id">
+            <img src="~/Libros/@(item.Id).png" alt="@item.Nombre" style="width: 200px;">
+            <h2>@item.Nombre</h2>
         </a>
     </div>
-    <div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div><div class="libro">
-        <a href="www.goog.com">
-            <img src="/img/libros/1.png" alt="Book 1" style="width: 200px;">
-            <h2>Titulo del Libro 1</h2>
-        </a>
-    </div>
-
+    }
+    
 
 </div>
 <!-- Repite para cada libro -->
