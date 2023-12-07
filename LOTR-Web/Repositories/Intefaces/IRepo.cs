@@ -6,5 +6,7 @@
         IPublicacionesRepository PublicacionesRepository { get; }
         IPeliculasRepository PeliculasRepository { get; }
         IEstudiosRepository EstudiosRepository { get; }
+        ILibrosRepository LibrosRepository { get; }
+        IAutorRepository AutorRepository { get; }
     }
 }

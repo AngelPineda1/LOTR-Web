@@ -1,0 +1,75 @@
+.libroAgregarForm {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 3rem 3rem rgba(0, 0, 0, 0.874);
+    font-family: 'Arial', sans-serif;
+    padding: 10px;
+    width: 70%;
+    margin: auto;
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    
+    text-align: center;
+}
+
+.libroAgregarForm label {
+    margin-bottom: 5px;
+}
+input[type="file"]{
+    margin-bottom: 10px;
+}
+.libroAgregarForm input[type="text"], .libroAgregarForm textarea {
+    width: 100%;
+    height: 2rem;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.libroAgregarForm select {
+    text-align: center;
+    text-align: start;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    height: 3.4rem;
+}
+
+.libroAgregarForm select:nth-child(2) {
+    margin-left: 4%;
+}
+
+.libroAgregarForm input[type="submit"], .libroAgregarForm input[type="button"] {
+    
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background-color: #007bff;
+    cursor: pointer;
+    margin-top: .5rem;
+    transition: 1s all;
+}
+.libroAgregarForm input[type="submit"]:hover, .libroAgregarForm input[type="button"]:hover
+{
+    box-shadow: 5px 5px 5px black;
+}
+.libroAgregarForm > div > img {
+    max-width: 100%; /* Ajusta esto al tamaño máximo que desees */
+    height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
+    display: block; /* Esto eliminará cualquier espacio extra alrededor de la imagen */
+    margin: auto; /* Esto centrará la imagen en el formulario */
+}
+.libroAgregarForm input[type="file"] {
+    width: 60%; /* Esto hará que el input se ajuste al ancho del formulario */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+.libroAgregarForm input[type="button"] {
+    background-color: #6c757d;
+    width: 100%;
+}
