@@ -15,6 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\menu.js" />
+    <None Include="wwwroot\js\scrollUp.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="microsoft.EntityFrameworkCore.tools" Version="7.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
