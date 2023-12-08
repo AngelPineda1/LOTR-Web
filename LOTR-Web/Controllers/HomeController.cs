@@ -56,17 +56,18 @@ namespace LOTR_Web.Controllers
                 }
                 else 
                 {
+                    bool Admin = _repo.UsuarioRepository.EsAdmin(User.Id);
                     var Claims = new List<Claim>
                     {
                         new("Id",User.Id.ToString()),
                         new(ClaimTypes.Name,User.Correo),
-                        new(ClaimTypes.Role, User.Correo == "espinoaangel@gmail.com" ? "Admin" : "User")
+                        new(ClaimTypes.Role, Admin ? "Admin" : "User")
                     };
                     var Identity = new ClaimsIdentity(Claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(Identity));
-                    if (Claims.LastOrDefault().ToString() == "espinoaangel@gmail.com")
+                    if (Admin)
                     {
-                        return RedirectToAction("Index", "Admin", new { area = "Admin" });
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
                     else 
                     {

@@ -1,5 +1,6 @@
 ﻿using LOTR_Web.Models.Entities;
 using LOTR_Web.Repositories.Intefaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace LOTR_Web.Repositories.Repositorios
 {
@@ -19,6 +20,10 @@ namespace LOTR_Web.Repositories.Repositorios
         public Usuario? UsuarioLogin(string Correo, string Contraseña) 
         {
             return _context.Usuario.FirstOrDefault(x => x.Correo == Correo && x.Contraseña == Contraseña);
+        }
+        public bool EsAdmin(int Id) 
+        {
+            return _context.Usuariorol.Any(x => x.IdUsuario == Id && x.IdRol == 1);
         }
     }
 }

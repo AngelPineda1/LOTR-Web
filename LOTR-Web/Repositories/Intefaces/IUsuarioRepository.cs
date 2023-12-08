@@ -6,5 +6,6 @@ namespace LOTR_Web.Repositories.Intefaces
     {
         Usuario GetUsuarioById(int Id);
         Usuario? UsuarioLogin(string Correo, string Contraseña);
+        bool EsAdmin(int Id);
     }
 }

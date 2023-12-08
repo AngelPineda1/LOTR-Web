@@ -4,12 +4,13 @@
     box-shadow: 0 3rem 3rem rgba(0, 0, 0, 0.874);
     font-family: 'Arial', sans-serif;
     padding: 10px;
-    width: 70%;
+    background-color:gray;
+    width: 60%;
+    height:60rem;
     margin: auto;
     margin-top: 10rem;
     display: flex;
     flex-direction: column;
-    
     text-align: center;
 }
 
@@ -26,7 +27,6 @@ input[type="file"]{
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-
 .libroAgregarForm select {
     text-align: center;
     text-align: start;
@@ -34,7 +34,7 @@ input[type="file"]{
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
-    height: 3.4rem;
+    height: 3.8rem;
 }
 
 .libroAgregarForm select:nth-child(2) {

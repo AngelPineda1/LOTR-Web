@@ -19,6 +19,7 @@ html{
     background-size: cover;
     resize: auto;
     height: 100%;
+    background-color:black;
     font-family: var(--fuenteprincipal);
 }
   *,*:before, *:after {
@@ -118,6 +119,9 @@ label{
 .titleContainer{
     position: relative;
     padding: 20px;
+}
+.menu-slide{
+    color:white;
 }
 .navbar .menu-slide{
     display: none;
