@@ -1,13 +1,15 @@
 ﻿using LOTR_Web.Models.ViewModels;
 using LOTR_Web.Repositories.Intefaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.WebSockets;
 
-namespace LOTR_Web.Controllers
+namespace LOTR_Web.Areas.User.Controllers
 {
-    public class PeliculasController : Controller
+    [Area("User")]
+    [Authorize(Roles = "User, Admin")]
+    public class JuegosController : Controller
     {
-        public PeliculasController(IRepo repo)
+        public JuegosController(IRepo repo)
         {
             Repo = repo;
         }
@@ -16,12 +18,13 @@ namespace LOTR_Web.Controllers
 
         public IActionResult Index()
         {
-            var datos=Repo.PeliculasRepository.GetPeliculas().Select(x=>new PeliculasViewModelAnonimo()
+            var datos = Repo.JuegosRepository.GetJuegos().Select(x => new JuegosAnonimoViewModel()
             {
+                Descripcion = x.Descripcion,
+                Nombre = x.Nombre,
                 Id = x.Id,
-                Descripcion=x.Descripcion,
-                Nombre=x.Nombre,
-                FechaPublicacion=x.FechaPublicacion
+                FechaPublicacion = x.FechaPublicacion,
+                Clasificacion = x.Clasificacion,
             });
             if (datos == null)
             {
@@ -32,15 +35,15 @@ namespace LOTR_Web.Controllers
         public IActionResult VerDetalles(string id)
         {
             id = id.Replace("-", " ");
-            
-            var datos = Repo.PeliculasRepository.GetPeliculaByNombre(id);
-            PeliculasViewModelAnonimo vm = new PeliculasViewModelAnonimo()
+
+            var datos = Repo.JuegosRepository.GetJuegosByNombre(id);
+            JuegosAnonimoViewModel vm = new JuegosAnonimoViewModel()
             {
                 Descripcion = datos.Descripcion,
                 Nombre = datos.Nombre,
                 Id = datos.Id,
                 FechaPublicacion = datos.FechaPublicacion,
-               
+                Clasificacion = datos.Clasificacion,
             };
             return View(vm);
         }

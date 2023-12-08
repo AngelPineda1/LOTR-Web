@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/header.css">
+    <link rel="stylesheet" href="~/css/foro.css">
+    <link href="~/css/ObjViewStyles.css" rel="stylesheet" />
+    <link href="~/css/formStyles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/login.css" />
+    <title>THE LORD OF THE RINGS</title>
+
+</head>
+<body>
+
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <div class="titleContainer">
+                    <p>THE LORD OF THE RINGS</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <ul class="ulLinks">
+                    <li class="active"><a href="~/User">Home</a></li>
+                    <li><a class="linkA" href="~/User/Libros">Libros</a></li>
+                    <li><a class="linkA" href="~/User/Peliculas">Peliculas</a></li>
+                    <li><a class="linkA" href="~/User/Juegos">Juegos</a></li>
+                    <li><a class="linkA" href="~/User/Foro">Foro</a></li>
+                    <li><a class="linkA" href="~/Home/LogOut">CerrarSesion</a></li>
+                </ul>
+            </div>
+            <svg class="menu-slide" xmlns="http://www.w3.org/2000/svg" width="30" height="55" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.713-.288T3 17q0-.425.288-.713T4 16h16q.425 0 .713.288T21 17q0 .425-.288.713T20 18H4Zm0-5q-.425 0-.713-.288T3 12q0-.425.288-.713T4 11h16q.425 0 .713.288T21 12q0 .425-.288.713T20 13H4Zm0-5q-.425 0-.713-.288T3 7q0-.425.288-.713T4 6h16q.425 0 .713.288T21 7q0 .425-.288.713T20 8H4Z" /></svg>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+    </footer>
+    <script src="~/js/menu.js"></script>
+</body>
+</html>

@@ -1,10 +1,12 @@
 ﻿using LOTR_Web.Models.ViewModels;
 using LOTR_Web.Repositories.Intefaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.WebSockets;
 
-namespace LOTR_Web.Controllers
+namespace LOTR_Web.Areas.User.Controllers
 {
+    [Area("User")]
+    [Authorize(Roles = "User, Admin")]
     public class PeliculasController : Controller
     {
         public PeliculasController(IRepo repo)
@@ -16,12 +18,12 @@ namespace LOTR_Web.Controllers
 
         public IActionResult Index()
         {
-            var datos=Repo.PeliculasRepository.GetPeliculas().Select(x=>new PeliculasViewModelAnonimo()
+            var datos = Repo.PeliculasRepository.GetPeliculas().Select(x => new PeliculasViewModelAnonimo()
             {
                 Id = x.Id,
-                Descripcion=x.Descripcion,
-                Nombre=x.Nombre,
-                FechaPublicacion=x.FechaPublicacion
+                Descripcion = x.Descripcion,
+                Nombre = x.Nombre,
+                FechaPublicacion = x.FechaPublicacion
             });
             if (datos == null)
             {
@@ -32,7 +34,7 @@ namespace LOTR_Web.Controllers
         public IActionResult VerDetalles(string id)
         {
             id = id.Replace("-", " ");
-            
+
             var datos = Repo.PeliculasRepository.GetPeliculaByNombre(id);
             PeliculasViewModelAnonimo vm = new PeliculasViewModelAnonimo()
             {
@@ -40,7 +42,7 @@ namespace LOTR_Web.Controllers
                 Nombre = datos.Nombre,
                 Id = datos.Id,
                 FechaPublicacion = datos.FechaPublicacion,
-               
+
             };
             return View(vm);
         }
