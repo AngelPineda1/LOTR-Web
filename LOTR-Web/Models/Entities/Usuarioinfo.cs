@@ -11,5 +11,5 @@ public partial class Usuarioinfo
 
     public string? Descripcion { get; set; }
 
-    public int IdFoto { get; set; }
+    public int IdUsuario { get; set; }
 }

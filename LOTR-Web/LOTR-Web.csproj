@@ -13,6 +13,7 @@
     <Folder Include="Areas\User\Models\" />
     <Folder Include="wwwroot\img\libros\" />
     <Folder Include="wwwroot\Juegos\" />
+    <Folder Include="wwwroot\profpics\" />
     <Folder Include="wwwroot\Peliculas\" />
     <Folder Include="wwwroot\publicaciones\" />
   </ItemGroup>

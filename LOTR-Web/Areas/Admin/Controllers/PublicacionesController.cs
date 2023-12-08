@@ -39,6 +39,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
                     Fecha = x.Fecha,
                     Texto = x.Texto,
                     Archivo = existeFoto(x.Id)
+                    
                 }),
                 AgregarPublicaciones = new AgregarPublicacionesModel()
             };

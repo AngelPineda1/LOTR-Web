@@ -221,9 +221,12 @@ public partial class LotrdbContext : DbContext
                 .HasCharSet("utf8mb4")
                 .UseCollation("utf8mb4_unicode_ci");
 
+            entity.HasIndex(e => e.IdInfo, "fkUsuarioInfo_idx");
+
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Contraseña).HasMaxLength(256);
             entity.Property(e => e.Correo).HasMaxLength(120);
+            entity.Property(e => e.IdInfo).HasColumnType("int(11)");
         });
 
         modelBuilder.Entity<Usuarioinfo>(entity =>
@@ -237,9 +240,11 @@ public partial class LotrdbContext : DbContext
 
             entity.HasIndex(e => e.Nombre, "Nombre").IsUnique();
 
+            entity.HasIndex(e => e.IdUsuario, "fkInfoUser_idx");
+
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Descripcion).HasColumnType("tinytext");
-            entity.Property(e => e.IdFoto).HasColumnType("int(11)");
+            entity.Property(e => e.IdUsuario).HasColumnType("int(11)");
             entity.Property(e => e.Nombre).HasMaxLength(120);
         });
 

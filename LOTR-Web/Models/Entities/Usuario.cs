@@ -11,6 +11,8 @@ public partial class Usuario
 
     public string Contraseña { get; set; } = null!;
 
+    public int IdInfo { get; set; }
+
     public virtual ICollection<Autor> Autor { get; set; } = new List<Autor>();
 
     public virtual ICollection<Estudio> Estudio { get; set; } = new List<Estudio>();

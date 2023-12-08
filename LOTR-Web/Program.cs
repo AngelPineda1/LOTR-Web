@@ -17,7 +17,7 @@ builder.Services.AddDbContext<LotrdbContext>(options =>
         ));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(c =>
 {
-    c.AccessDeniedPath = "/Home/Denied";
+    c.AccessDeniedPath = "/Home/Login";
     c.LoginPath = "/Home/Login";
     c.LogoutPath = "/Home/Logout";
     c.ExpireTimeSpan = TimeSpan.FromMinutes(20);

@@ -32,7 +32,7 @@ namespace LOTR_Web.Areas.User.Controllers
         {
             var datos = new AdminPublicacionesViewModel()
             {
-                Publicaciones = Repo.PublicacionesRepository.GetPublicaciones().Select(x => new PublicacionesModel()
+                Publicaciones = Repo.PublicacionesRepository.GetPublicaciones().OrderByDescending(x=>x.Id).Select(x => new PublicacionesModel()
                 {
 
                     Id = x.Id,
@@ -57,8 +57,6 @@ namespace LOTR_Web.Areas.User.Controllers
                 Texto = x.Texto,
                 Archivo = existeFoto(x.Id)
             });
-            vm.AgregarPublicaciones = new AgregarPublicacionesModel();
-            
             if (string.IsNullOrWhiteSpace(vm.AgregarPublicaciones.Texto))
             {
                 ModelState.AddModelError("", "Escriba el texto de la publicacion");

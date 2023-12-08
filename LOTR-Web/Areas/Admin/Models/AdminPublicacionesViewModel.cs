@@ -7,6 +7,7 @@
     }
     public class PublicacionesModel
     {
+        public int UserId { get; set; }
         public int Id { get; set; }
 
         public string Texto { get; set; } = null!;
