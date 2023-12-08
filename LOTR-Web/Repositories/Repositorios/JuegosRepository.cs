@@ -27,6 +27,11 @@ namespace LOTR_Web.Repositories.Repositorios
             return Context.Juegos.OrderBy(x=>x.Nombre);
         }
 
+        public Juegos GetJuegosByNombre(string nombre)
+        {
+            return Context.Juegos.Where(x=>x.Nombre==nombre).First();
+        }
+
         public void InsertJuego(Juegos juegos)
         {
             base.Insert(juegos);

@@ -10,5 +10,6 @@ namespace LOTR_Web.Repositories.Intefaces
         Peliculas GetId(int id);
         void UpdatePelicula(Peliculas p);
         void DeletePelicula(Peliculas p);
+        Peliculas GetPeliculaByNombre(string id);
     }
 }

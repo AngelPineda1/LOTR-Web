@@ -36,5 +36,10 @@ namespace LOTR_Web.Repositories.Repositorios
         {
             base.Delete(p);
         }
+
+        public Peliculas GetPeliculaByNombre(string id)
+        {
+            return _context.Peliculas.Where(x => x.Nombre == id).First(); 
+        }
     }
 }

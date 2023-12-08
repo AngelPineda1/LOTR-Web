@@ -1,0 +1,17 @@
+﻿@model IEnumerable<LOTR_Web.Models.ViewModels.JuegosAnonimoViewModel>
+@{
+    Layout = "Layout";
+}
+<div class="librosContainer">
+    @foreach (var item in Model)
+    {
+
+        <div class="libro">
+            <a href="~/Juegos/VerDetalles/@item.Nombre.Replace(" ","-")">
+                <img src="~/Juegos/@(item.Id).png" alt="@item.Nombre" style="width: 200px;">
+                <h2>@item.Nombre</h2>
+            </a>
+        </div>
+
+    }
+</div>

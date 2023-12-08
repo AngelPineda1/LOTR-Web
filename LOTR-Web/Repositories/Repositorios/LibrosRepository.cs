@@ -27,6 +27,11 @@ namespace LOTR_Web.Repositories.Repositorios
             return _context.Libros.Where(x => x.Id == id).First();
         }
 
+        public Libros GetLibroByNombre(string nombre)
+        {
+            return _context.Libros.Where(x=>x.Nombre == nombre).First();
+        }
+
         public void InsertLibro(Libros libro)
         {
             base.Insert(libro);

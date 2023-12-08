@@ -9,5 +9,6 @@ namespace LOTR_Web.Repositories.Intefaces
         void UpdateLibro(Libros libro);
         void DeleteLibro(Libros libros);
         IEnumerable<Libros> GetAll();
+        Libros GetLibroByNombre(string nombre);
     }
 }

@@ -11,8 +11,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
-    <Folder Include="Models\" />
-    <Folder Include="wwwroot\libros\" />
+    <Folder Include="wwwroot\img\libros\" />
     <Folder Include="wwwroot\Juegos\" />
     <Folder Include="wwwroot\Peliculas\" />
     <Folder Include="wwwroot\publicaciones\" />

@@ -1,0 +1,21 @@
+﻿@model LOTR_Web.Models.ViewModels.PeliculasViewModelAnonimo
+@{
+    ViewData["Title"] = "VerDetalles";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="verObjectContainer">
+    <img src="~/Peliculas/@(Model.Id).png" />
+    <div class="objDivContainer">
+
+        <section>
+            <h1>@Model.Nombre</h1>
+        </section>
+        <section>
+           
+            <p>@Model.Descripcion</p>
+            <p>@Model.FechaPublicacion.ToShortDateString()</p>
+        </section>
+    </div>
+</div>
+

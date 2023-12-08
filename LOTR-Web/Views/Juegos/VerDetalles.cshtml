@@ -1,0 +1,21 @@
+﻿@model LOTR_Web.Models.ViewModels.JuegosAnonimoViewModel
+@{
+    ViewData["Title"] = "VerDetalles";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="verObjectContainer">
+    <img src="~/Juegos/@(Model.Id).png" />
+    <div class="objDivContainer">
+
+        <section>
+            <h1>@Model.Nombre</h1>
+        </section>
+        <section>
+            <h3>@Model.Clasificacion</h3>
+            <p>@Model.Descripcion</p>
+            <p>@Model.FechaPublicacion.ToShortDateString()</p>
+        </section>
+    </div>
+</div>
+

@@ -9,5 +9,6 @@ namespace LOTR_Web.Repositories.Intefaces
         void UpdateJuego(Juegos juegos);
         void DeleteJuego(Juegos juegos);
         Juegos GetJuegoById(int id);
+        Juegos GetJuegosByNombre(string nombre);
     }
 }
