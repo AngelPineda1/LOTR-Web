@@ -1,23 +1,24 @@
-﻿@model LOTR_Web.Models.Entities.Libros
+﻿@model LOTR_Web.Models.Entities.Peliculas
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Eliminar";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<form class="libroAgregarForm" method="post" action="~/Admin/Libros/Eliminar">
-    <label>Eliminación de Libro</label>
+<form class="libroAgregarForm" method="post" action="~/Admin/Peliculas/Eliminar">
+    <label>Eliminación de Pelicula</label>
+    <label>¿Desea eliminar esta pelicula?</label>
     <label>Nombre</label>
-    <input type="hidden" asp-for="Id"/>
-    <input type="text" disabled asp-for="Nombre"/>
+    <input type="hidden" asp-for="Id" />
+    <input type="text" disabled asp-for="Nombre" />
     <label>Descripción</label>
     <textarea disabled>@Model.Descripcion</textarea>
     <div>
         <label>Portada</label>
-        <img src="~/Libros/@(Model.Id).png" id="imagen-preview"/>
+        <img src="~/Peliculas/@(Model.Id).png" id="imagen-preview" />
     </div>
     <input type="submit" value="Eliminar" />
-    <a href="~/Admin/Libros">
+    <a href="~/Admin/Peliculas">
         <input type="button" value="Cancelar" />
     </a>
 </form>

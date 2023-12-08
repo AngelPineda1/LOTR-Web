@@ -75,6 +75,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
+                vm.Peliculas.IdUsuario = 1;
                 Peliculas peliculas = new Peliculas()
                 {
                     Nombre=vm.Peliculas.Nombre,
@@ -90,11 +91,11 @@ namespace LOTR_Web.Areas.Admin.Controllers
                     //obtener id del producto
                     //copiar el archivo no disponible y cambiar el nombre por el id
 
-                    System.IO.File.Copy("wwwroot/images/burger.png", $"wwwroot/hamburguesas/{vm.Peliculas.Id}.png");
+                    System.IO.File.Copy("wwwroot/Peliculas/imagen-no-disponible.png", $"wwwroot/Peliculas/{peliculas.Id}.png");
                 }
                 else
                 {
-                    System.IO.FileStream fs = System.IO.File.Create($"wwwroot/hamburguesas/{vm.Peliculas.Id}.png");
+                    System.IO.FileStream fs = System.IO.File.Create($"wwwroot/Peliculas/{peliculas.Id}.png");
                     vm.Archivo.CopyTo(fs);
                     fs.Close();
                 }
@@ -117,10 +118,12 @@ namespace LOTR_Web.Areas.Admin.Controllers
             else
             {
                 AdminPeliculasViewModel vm = new AdminPeliculasViewModel();
+                vm.Peliculas = new PeliculasModel();
                 vm.Peliculas.IdEstudio = datos.IdEstudio;
                 vm.Peliculas.Nombre = datos.Nombre;
                 vm.Peliculas.Descripcion = datos.Descripcion;
                 vm.Peliculas.FechaPublicacion = datos.FechaPublicacion;
+                vm.Peliculas.Id=datos.Id;
                 vm.Estudios=_repo.EstudiosRepository.GetAll().Select(x=>new EstudiosModel()
                 {
                     Id=x.Id,
@@ -209,7 +212,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             _repo.PeliculasRepository.DeletePelicula(peli);
-            var ruta = $"wwwroot/hamburguesas/{p.Id}.png";
+            var ruta = $"wwwroot/Peliculas/{p.Id}.png";
             if (System.IO.File.Exists(ruta))
             {
                 System.IO.File.Delete(ruta);

@@ -1,19 +1,22 @@
 ﻿@model LOTR_Web.Areas.Admin.Models.AdminPeliculasViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    Layout = "AdminLayout";
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-<form class="libroAgregarForm" action="~/Admin/Peliculas/Agregar" method="post" enctype="multipart/form-data">
-    <label>Agregar Pelicula</label>
+
+<form class="libroAgregarForm" action="~/Admin/Peliculas/Editar" method="post" enctype="multipart/form-data">
+    <label>Agregar Juego</label>
+    <input type="hidden" asp-for="Peliculas.Id"/>
     <label>Nombre</label>
     <input type="text" asp-for="Peliculas.Nombre" />
     <label>Descripción</label>
     <textarea asp-for="Peliculas.Descripcion"></textarea>
-    
+
     <div>
         <label for="imagen">Portada</label>
         <input type="file" id="imagen" accept="image/png" onchange="previewImagen()" asp-for="Archivo" />
-        <img id="imagen-preview" src="~/img/imagen-no-disponible.png">
+        <img id="imagen-preview" src="~/Peliculas/@(Model.Peliculas.Id).png">
 
     </div>
     ¿Dirigido por?
@@ -49,3 +52,4 @@
         }
     }
 </script>
+
