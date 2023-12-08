@@ -2,6 +2,7 @@
 using LOTR_Web.Models.Entities;
 using LOTR_Web.Repositories.Intefaces;
 using LOTR_Web.Repositories.Repositorios;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -14,6 +15,14 @@ builder.Services.AddDbContext<LotrdbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("default"),
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("default"))
         ));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(c =>
+{
+    c.AccessDeniedPath = "/Home/Denied";
+    c.LoginPath = "/Home/Login";
+    c.LogoutPath = "/Home/Logout";
+    c.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+    c.Cookie.Name = "LOTR-Web-PFinal";
+});
 
 builder.Services.AddTransient<IRepo, Repo>();
 builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
@@ -24,6 +33,8 @@ builder.Services.AddTransient<ILibrosRepository, LibrosRepository>();
 builder.Services.AddTransient<IAutorRepository, AutorRepository>();
 builder.Services.AddTransient<IJuegosRepository, JuegosRepository>();
 var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllerRoute(name: "areas",
             pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 app.MapDefaultControllerRoute();

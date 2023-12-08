@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LOTR_Web.Areas.Admin.Controllers
+namespace LOTR_Web.Areas.User.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles ="Admin")]
+    [Area("User")]
+    [Authorize(Roles = "User, Admin")]
     public class HomeController : Controller
     {
         public IActionResult Index()

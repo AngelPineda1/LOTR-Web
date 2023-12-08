@@ -2,12 +2,15 @@
 using LOTR_Web.Models.Entities;
 using LOTR_Web.Repositories.Intefaces;
 using LOTR_Web.Repositories.Repositorios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Core.Types;
 
 namespace LOTR_Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+
+    [Authorize(Roles = "Admin")]
     public class PeliculasController : Controller
     {
         private readonly IRepo _repo;

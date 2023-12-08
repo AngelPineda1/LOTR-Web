@@ -44,16 +44,18 @@
     width: 160px;
     height: 40px;
 }
-.adminLibrosdiv>a>button{
-    background-color: rgb(81, 81, 81);
-    border: 1px solid rgba(0, 0, 0, 0.326);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: .5s all;
-}
 
 .adminLibrosdiv>a>button:hover{
     box-shadow: 0px 0px 20px 8px rgba(255, 255, 255, 0.254);
     background-color: rgb(255, 255, 255);
     cursor: pointer;
+}
+.adminLibrosdiv>a>button{
+    background-color: rgb(81, 81, 81);
+    border: 1px solid rgba(0, 0, 0, 0.326);
+    border-radius: 10px;
+    cursor: pointer;
+    width:20rem;
+    height:4rem;
+    transition: .5s all;
 }

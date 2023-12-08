@@ -1,6 +1,7 @@
 ﻿using LOTR_Web.Areas.Admin.Models;
 using LOTR_Web.Models.Entities;
 using LOTR_Web.Repositories.Intefaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Text.RegularExpressions;
@@ -8,6 +9,7 @@ using System.Text.RegularExpressions;
 namespace LOTR_Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class JuegosController : Controller
     {
         public JuegosController(IRepo repo)

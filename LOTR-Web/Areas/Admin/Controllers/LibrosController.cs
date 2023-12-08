@@ -2,11 +2,13 @@
 using LOTR_Web.Models.Entities;
 using LOTR_Web.Repositories.Intefaces;
 using LOTR_Web.Repositories.Repositorios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LOTR_Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class LibrosController : Controller
     {
         public IRepo _repo { get; }
