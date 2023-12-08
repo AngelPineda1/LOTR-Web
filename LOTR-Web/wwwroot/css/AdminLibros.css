@@ -1,0 +1,59 @@
+
+.adminLibrosdiv{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.objElegible{
+    margin: auto;
+    margin-top: 1rem;
+    text-align: center;
+    background-image: url(AdminLibros.png);
+    width: 70%;
+    border: .3px solid black;
+    border-radius: 5px;
+    transition: .2s all;
+}
+.objElegible:hover{
+    box-shadow: 0px 1px 10px 5px rgba(255, 255, 255, 0.46);
+
+}
+.objElegible>a{
+    
+    text-decoration: none;
+}
+
+.objElegible>a>svg{
+    margin-top: 3px;
+}
+.objElegible>label{
+    color: white;
+    text-shadow: 0px 0px 5px rgba(2, 255, 255, 0.355);
+    font-weight: bold;
+}
+.pth{
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.464);
+    border-radius: 5px;
+    fill: white;
+    border: .5px solid white;
+}
+.adminLibrosdiv>a{
+    text-align: center;
+    
+    width: 160px;
+    height: 40px;
+}
+.adminLibrosdiv>a>button{
+    background-color: rgb(81, 81, 81);
+    border: 1px solid rgba(0, 0, 0, 0.326);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .5s all;
+}
+
+.adminLibrosdiv>a>button:hover{
+    box-shadow: 0px 0px 20px 8px rgba(255, 255, 255, 0.254);
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}

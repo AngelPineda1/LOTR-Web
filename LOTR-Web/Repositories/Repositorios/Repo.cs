@@ -4,7 +4,7 @@ namespace LOTR_Web.Repositories.Repositorios
 {
     public class Repo:IRepo
     {
-        public Repo(IAutorRepository autorRepository,IUsuarioRepository UserRepository, IPublicacionesRepository PubRepository, IPeliculasRepository peliculasRepository,ILibrosRepository librosRepository,IEstudiosRepository estudiosRepository)
+        public Repo(IJuegosRepository juegosRepository, IAutorRepository autorRepository,IUsuarioRepository UserRepository, IPublicacionesRepository PubRepository, IPeliculasRepository peliculasRepository,ILibrosRepository librosRepository,IEstudiosRepository estudiosRepository)
         {
             AutorRepository = autorRepository;
             UsuarioRepository = UserRepository;
@@ -12,6 +12,7 @@ namespace LOTR_Web.Repositories.Repositorios
             PeliculasRepository = peliculasRepository;
             EstudiosRepository = estudiosRepository;
             LibrosRepository = librosRepository;
+            JuegosRepository = juegosRepository;
         }
 
         public IAutorRepository AutorRepository { get; }
@@ -21,5 +22,7 @@ namespace LOTR_Web.Repositories.Repositorios
         public IEstudiosRepository EstudiosRepository { get; }
 
         public ILibrosRepository LibrosRepository { get; }
+
+        public IJuegosRepository JuegosRepository { get; }
     }
 }

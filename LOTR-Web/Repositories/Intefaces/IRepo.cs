@@ -8,5 +8,6 @@
         IEstudiosRepository EstudiosRepository { get; }
         ILibrosRepository LibrosRepository { get; }
         IAutorRepository AutorRepository { get; }
+        IJuegosRepository JuegosRepository { get; }
     }
 }

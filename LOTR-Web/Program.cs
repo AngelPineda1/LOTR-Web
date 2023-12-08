@@ -22,6 +22,7 @@ builder.Services.AddTransient<IPeliculasRepository,PeliculasRepository>();
 builder.Services.AddTransient<IEstudiosRepository, EstudiosRepository>();
 builder.Services.AddTransient<ILibrosRepository, LibrosRepository>();
 builder.Services.AddTransient<IAutorRepository, AutorRepository>();
+builder.Services.AddTransient<IJuegosRepository, JuegosRepository>();
 var app = builder.Build();
 app.MapControllerRoute(name: "areas",
             pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

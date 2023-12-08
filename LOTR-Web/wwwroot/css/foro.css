@@ -1,21 +1,47 @@
 
 .foroSection{
     width: 100%;
-    margin-top: 10rem;
-}
-.container {
-    border: .5px solid rgba(0, 0, 0, 0.1);
-    width: 100%;
-    height: auto;
-    background-color: rgba(235, 235, 235, 0.808);
-    box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.514);
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 5rem;
+    margin-top:11rem;
     
 }
 
+#imagen-preview{
+    width:50px;
+    height:50px;
+}
+.container {
+    border: .5px solid rgba(0, 0, 0, 0.1);
+    width: 70%;
+    height: auto;
+    background-color: lightgray;
+    box-shadow: 0 5px 20px 5px rgba(255, 255, 255, 0.514);
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 1rem;   
+}
+.foroSection>form{
+    
+    box-shadow: 0 5px 20px 5px rgba(255, 255, 255, 0.514);
+    border: 1px solid rgba(0, 0, 0, 0.276);
+    margin-top: 5rem;
+    margin-left: 15%;
+    background-color: lightgray;
+    width: 70%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    height: 140px;
+}
+.foroSection>form>textarea{
+    margin: 10px;
+    width: 80%;
+}
+.foroSection>form>input[type="file"]{
+    width: 80%;
+}
 .container-usuario {
+    background-color: blue;
     width: 10%;
     padding: 100px;
 }
@@ -83,4 +109,10 @@
     font-size: 1rem;
     padding: 1rem;
     text-align: justify;
+}
+svg{
+    color:black;
+}
+.liked{
+    color: red;
 }

@@ -3,7 +3,7 @@
 @{
     Layout = "AdminLayout";
 }
-<form class="libroAgregarForm" action="~/Admin/Libros/Agregar" method="post">
+<form class="libroAgregarForm" action="~/Admin/Libros/Agregar" method="post" enctype="multipart/form-data">
     <label>Agregar Libro</label>
     <label>Nombre</label>
     <input type="text" asp-for="Libros.Nombre"/>
@@ -27,8 +27,8 @@
         <option>Planeta de libros</option>
     </select>
     <input type="submit" />
-    <a>
-        <input type="button" value="Cancelar" />
+    <a href="~/Admin/Libros">
+        <input type="button" value="Cancelar"/>
     </a>
 </form>
 <script>

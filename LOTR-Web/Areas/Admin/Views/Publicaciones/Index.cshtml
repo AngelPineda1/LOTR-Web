@@ -1,13 +1,24 @@
-﻿@model IEnumerable<LOTR_Web.Areas.Admin.Models.AdminPublicacionesViewModel>
+﻿@model LOTR_Web.Areas.Admin.Models.AdminPublicacionesViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "AdminLayout";
 }
 
 <section class="foroSection">
-    @foreach (var item in Model)
-    {
+    <form action="~/Admin/Publicaciones/Index" method="post" enctype="multipart/form-data">
         
+        <label>¿En que estas pensando?</label>
+        <textarea asp-for="AgregarPublicaciones.Texto">
+
+            </textarea>
+        <input type="file" id="imagen" accept="image/png" onchange="previewImagen()"  asp-for="AgregarPublicaciones.Archivo" />
+        
+        <input type="submit" value="Publicar">
+    </form>
+    @foreach (var item in Model.Publicaciones)
+    {
     <div class="container">
+        
         <div class="container-usario">
             <div class="headerPost">
                 <div class="profile-pic">
@@ -15,26 +26,48 @@
                 </div>
                 <label class="nameForo">Alexis</label>
 
-                <label class="dateForo">@item.
-                    Fecha</label>
+                <label class="dateForo">@item.Fecha.ToShortDateString()</label>
             </div>
                 <p class="txtPost">
                     @item.Texto
                 </p>
-                @if (item.Archivo != null)
+                @if (item.Archivo)
                 {
                     
-                <img src="img/5.jpg" class="postFoto" alt="">
+                <img src="~/publicaciones/@(item.Id).png" class="postFoto" alt="">
                 }
 
-            <div class="iconos">
-                <button>
-                    <img src="/img/FlatColorIconsLike.svg" alt="corazon">
-                </button>
-            </div>
+                <div class="iconos">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 20"><path fill="currentColor" d="M2 9.137C2 14 6.02 16.591 8.962 18.911C10 19.729 11 20.5 12 20.5s2-.77 3.038-1.59C17.981 16.592 22 14 22 9.138c0-4.863-5.5-8.312-10-3.636C7.5.825 2 4.274 2 9.137Z" /></svg>
+                    </button>
+                </div>
         </div>
     </div>
     }
    
 
 </section>
+<script>
+
+    function previewImagen() {
+        const inputImagen = document.getElementById('imagen');
+        const imagenPreview = document.getElementById('imagen-preview');
+
+        const archivoImagen = inputImagen.files[0];
+
+        if (archivoImagen) {
+            const lector = new FileReader();
+
+            lector.onload = function (e) {
+                imagenPreview.src = e.target.result;
+                imagenPreview.style.display = 'block';
+            };
+
+            lector.readAsDataURL(archivoImagen);
+        } else {
+            imagenPreview.src = '#';
+            imagenPreview.style.display = 'none';
+        }
+    }
+</script>
