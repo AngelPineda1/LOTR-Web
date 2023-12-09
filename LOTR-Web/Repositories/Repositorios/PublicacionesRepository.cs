@@ -1,9 +1,12 @@
-﻿using LOTR_Web.Models.Entities;
+﻿using Humanizer;
+using LOTR_Web.Areas.Admin.Models;
+using LOTR_Web.Models.Entities;
 using LOTR_Web.Repositories.Intefaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace LOTR_Web.Repositories.Repositorios
 {
-    public class PublicacionesRepository :GenericRepository<Publicaciones>, IPublicacionesRepository
+    public class PublicacionesRepository : GenericRepository<Publicaciones>, IPublicacionesRepository
     {
         private readonly LotrdbContext _context;
         public PublicacionesRepository(LotrdbContext context) : base(context)
@@ -17,13 +20,47 @@ namespace LOTR_Web.Repositories.Repositorios
             Publicaciones Publicacion = base.GetById(Id);
             return Publicacion;
         }
-        public IEnumerable<Publicaciones> GetPublicaciones() {
-        
-            return _context.Publicaciones.OrderBy(x=>x.Fecha);
+        public string GetUserName(int Id)
+        {
+            return _context.Usuario.Include(x => x.IdInfo).FirstOrDefault(x => x.Id == Id).IdInfoNavigation.Nombre;
         }
-        public void InsertPublicacion(Publicaciones p)
+        public AdminPublicacionesViewModel GetPublicaciones() {
+            bool existeFoto(int id)
+            {
+                string rutaImagen = $"wwwroot/publicaciones/{id}.png";
+                if (System.IO.File.Exists(rutaImagen))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            AdminPublicacionesViewModel vm = new();
+            vm.Publicaciones = _context.Usuariopublicacion.Include(x => x.IdPublicacionNavigation).Include(x => x.IdUsuarioNavigation).Include(x=>x.IdUsuarioNavigation.IdInfoNavigation).OrderByDescending(x=>x.Id).Select(x=>new PublicacionesModel 
+            {
+                Fecha = x.IdPublicacionNavigation.Fecha,
+                Id = x.IdPublicacion,
+                Texto = x.IdPublicacionNavigation.Texto,
+                UserId = x.IdUsuario,
+                UserName = x.IdUsuarioNavigation.IdInfoNavigation.Nombre,
+                Archivo = true
+            });
+            vm.AgregarPublicaciones = new();
+            return vm;
+        }
+        public void InsertPublicacion(Publicaciones p, int Id)
         {
             base.Insert(p);
+            
+            Usuariopublicacion user = new()
+            {
+                IdPublicacion = p.Id,
+                IdUsuario = Id
+            };
+            _context.Usuariopublicacion.Add(user);
+            _context.SaveChanges();
         }
         public void UpdatePublicacion(Publicaciones p)
         {
@@ -33,6 +70,7 @@ namespace LOTR_Web.Repositories.Repositorios
         {
             base.Delete(p);
         }
+        
 
     }
 }

@@ -25,7 +25,7 @@ namespace LOTR_Web.Repositories.Repositorios
         }
         public bool EsAdmin(int Id) 
         {
-            return _context.Usuariorol.Any(x => x.IdUsuario == Id && x.IdRol == 1);
+            return _context.Usuariorol.Any(x => x.IdUsuario == Id && x.IdRol == 2);
         }
         public Usuario? RegistrarUsuario(RegistrarseViewModel vm)
         {
@@ -45,10 +45,10 @@ namespace LOTR_Web.Repositories.Repositorios
                 Id = 0,
                 Contraseña = vm.Contraseña,
                 Correo = vm.Correo,
-                IdInfo = info.Id
+                IdInfoNavigation = info
             };
             //Insert(User);
-            _context.Usuario.Add(User);
+            Insert(User);
             Usuariorol ur = new()
             {
                 IdRol = 1,

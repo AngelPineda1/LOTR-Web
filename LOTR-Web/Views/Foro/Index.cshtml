@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LOTR_Web.Models.ViewModels.ForoViewModel>
+﻿@model LOTR_Web.Areas.Admin.Models.AdminPublicacionesViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -6,16 +6,16 @@
 
 <section class="foroSection">
    
-    @foreach (var item in Model)
+    @foreach (var item in Model.Publicaciones)
     {
         <div class="container">
 
             <div class="container-usario">
                 <div class="headerPost">
                     <div class="profile-pic">
-                        <img src="/img/6.jpg" alt="Foto">
+                        <img src="~/profpics/@(item.UserId).png" alt="Foto">
                     </div>
-                    <label class="nameForo">Alexis</label>
+                    <label class="nameForo">@item.UserName</label>
 
                     <label class="dateForo">@item.Fecha.ToShortDateString()</label>
                 </div>

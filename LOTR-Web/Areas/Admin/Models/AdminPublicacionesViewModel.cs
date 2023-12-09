@@ -8,6 +8,7 @@
     public class PublicacionesModel
     {
         public int UserId { get; set; }
+        public string UserName { get; set; } = string.Empty;        
         public int Id { get; set; }
 
         public string Texto { get; set; } = null!;
@@ -18,7 +19,7 @@
     public class AgregarPublicacionesModel
     {
         public int Id { get; set; }
-
+        public int UserId { get; set; } 
         public string Texto { get; set; } = null!;
 
         public DateTime Fecha { get; set; }

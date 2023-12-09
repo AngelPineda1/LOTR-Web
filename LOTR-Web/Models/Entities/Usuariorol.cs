@@ -9,6 +9,8 @@ public partial class Usuariorol
 
     public int IdRol { get; set; }
 
+    public int Id { get; set; }
+
     public virtual Rol IdRolNavigation { get; set; } = null!;
 
     public virtual Usuario IdUsuarioNavigation { get; set; } = null!;

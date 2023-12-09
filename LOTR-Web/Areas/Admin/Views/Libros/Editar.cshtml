@@ -17,7 +17,7 @@
     <div>
         <label for="imagen">Portada</label>
         <input type="file" id="imagen" accept="image/png" onchange="previewImagen()" asp-for="Archivo" />
-        <img id="imagen-preview" src="~/libros/@Model.Libros.Id).png">
+        <img id="imagen-preview" src="~/libros/@(Model.Libros.Id).png">
 
     </div>
     ¿Dirigido por?

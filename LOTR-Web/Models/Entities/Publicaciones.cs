@@ -10,4 +10,6 @@ public partial class Publicaciones
     public string Texto { get; set; } = null!;
 
     public DateTime Fecha { get; set; }
+
+    public virtual ICollection<Usuariopublicacion> Usuariopublicacion { get; set; } = new List<Usuariopublicacion>();
 }

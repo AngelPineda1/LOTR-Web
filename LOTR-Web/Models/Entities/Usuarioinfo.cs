@@ -11,5 +11,5 @@ public partial class Usuarioinfo
 
     public string? Descripcion { get; set; }
 
-    public int IdUsuario { get; set; }
+    public virtual ICollection<Usuario> Usuario { get; set; } = new List<Usuario>();
 }

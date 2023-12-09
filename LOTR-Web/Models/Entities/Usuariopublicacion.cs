@@ -9,6 +9,8 @@ public partial class Usuariopublicacion
 
     public int IdUsuario { get; set; }
 
+    public int Id { get; set; }
+
     public virtual Publicaciones IdPublicacionNavigation { get; set; } = null!;
 
     public virtual Usuario IdUsuarioNavigation { get; set; } = null!;

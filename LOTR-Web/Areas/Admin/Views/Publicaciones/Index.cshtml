@@ -12,7 +12,7 @@
 
             </textarea>
         <input type="file" id="imagen" accept="image/png" onchange="previewImagen()"  asp-for="AgregarPublicaciones.Archivo" />
-        
+        <input type="hidden" asp-for="AgregarPublicaciones.UserId" value="@(User.Claims.FirstOrDefault(x=>x.Type == "Id")?.Value)"/>
         <input type="submit" value="Publicar">
     </form>
     @foreach (var item in Model.Publicaciones)
@@ -22,9 +22,9 @@
         <div class="container-usario">
             <div class="headerPost">
                 <div class="profile-pic">
-                    <img src="~/img/gandalfIndex.jpg" alt="Foto">
+                        <img src="~/profpics/@(item.UserId).png" alt="Foto">
                 </div>
-                <label class="nameForo">Alexis</label>
+                    <label class="nameForo">@item.UserName</label>
 
                 <label class="dateForo">@item.Fecha.ToShortDateString()</label>
             </div>

@@ -16,47 +16,17 @@ namespace LOTR_Web.Areas.User.Controllers
         {
             Repo = repo;
         }
-        bool existeFoto(int id)
-        {
-            string rutaImagen = $"wwwroot/publicaciones/{id}.png";
-            if (System.IO.File.Exists(rutaImagen))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
         public IActionResult Index()
         {
-            var datos = new AdminPublicacionesViewModel()
-            {
-                Publicaciones = Repo.PublicacionesRepository.GetPublicaciones().OrderByDescending(x=>x.Id).Select(x => new PublicacionesModel()
-                {
-
-                    Id = x.Id,
-                    Fecha = x.Fecha,
-                    Texto = x.Texto,
-                    Archivo = existeFoto(x.Id)
-                }),
-                AgregarPublicaciones = new AgregarPublicacionesModel()
-            };
-
+            var datos = Repo.PublicacionesRepository.GetPublicaciones();
             return View(datos);
         }
         [HttpPost]
         public IActionResult Index(AdminPublicacionesViewModel vm)
         {
-          
-            vm.Publicaciones = Repo.PublicacionesRepository.GetPublicaciones().Select(x => new PublicacionesModel()
-            {
 
-                Id = x.Id,
-                Fecha = x.Fecha,
-                Texto = x.Texto,
-                Archivo = existeFoto(x.Id)
-            });
+            vm.Publicaciones = Repo.PublicacionesRepository.GetPublicaciones().Publicaciones;
             if (string.IsNullOrWhiteSpace(vm.AgregarPublicaciones.Texto))
             {
                 ModelState.AddModelError("", "Escriba el texto de la publicacion");
@@ -82,7 +52,7 @@ namespace LOTR_Web.Areas.User.Controllers
                     Fecha = vm.AgregarPublicaciones.Fecha
 
                 };
-                Repo.PublicacionesRepository.InsertPublicacion(publicaciones);
+                Repo.PublicacionesRepository.InsertPublicacion(publicaciones,vm.AgregarPublicaciones.UserId);
                 if (vm.AgregarPublicaciones.Archivo != null)
                 {
 

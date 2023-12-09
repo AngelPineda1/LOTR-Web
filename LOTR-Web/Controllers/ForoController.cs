@@ -1,4 +1,5 @@
-﻿using LOTR_Web.Models.ViewModels;
+﻿using LOTR_Web.Areas.Admin.Models;
+using LOTR_Web.Models.ViewModels;
 using LOTR_Web.Repositories.Intefaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,13 +28,7 @@ namespace LOTR_Web.Controllers
         }
         public IActionResult Index()
         {
-            var datos=Repo.PublicacionesRepository.GetPublicaciones().Select(x=>new ForoViewModel()
-            {
-                Fecha=x.Fecha,
-                Id=x.Id,
-                Texto=x.Texto,
-                Archivo = existeFoto(x.Id)
-            });
+            var datos = Repo.PublicacionesRepository.GetPublicaciones();
             if (datos == null)
             {
                 return RedirectToAction("Index", "Home");

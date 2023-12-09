@@ -176,7 +176,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
                      datos.IdEstudio= vm.Peliculas.IdEstudio ;
                     datos.Nombre= vm.Peliculas.Nombre;
                     datos.Descripcion = vm.Peliculas.Descripcion;
-                    datos.FechaPublicacion = vm.Peliculas.FechaPublicacion;
+                    datos.FechaPublicacion = DateTime.Now;
 
                    
                 _repo.PeliculasRepository.UpdatePelicula(datos);

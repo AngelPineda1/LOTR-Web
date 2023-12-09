@@ -37,6 +37,7 @@ public partial class LotrdbContext : DbContext
 
     public virtual DbSet<Usuariorol> Usuariorol { get; set; }
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -227,6 +228,11 @@ public partial class LotrdbContext : DbContext
             entity.Property(e => e.Contraseña).HasMaxLength(256);
             entity.Property(e => e.Correo).HasMaxLength(120);
             entity.Property(e => e.IdInfo).HasColumnType("int(11)");
+
+            entity.HasOne(d => d.IdInfoNavigation).WithMany(p => p.Usuario)
+                .HasForeignKey(d => d.IdInfo)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fkUserInfoRel");
         });
 
         modelBuilder.Entity<Usuarioinfo>(entity =>
@@ -240,18 +246,16 @@ public partial class LotrdbContext : DbContext
 
             entity.HasIndex(e => e.Nombre, "Nombre").IsUnique();
 
-            entity.HasIndex(e => e.IdUsuario, "fkInfoUser_idx");
-
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Descripcion).HasColumnType("tinytext");
-            entity.Property(e => e.IdUsuario).HasColumnType("int(11)");
             entity.Property(e => e.Nombre).HasMaxLength(120);
         });
 
         modelBuilder.Entity<Usuariopublicacion>(entity =>
         {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
             entity
-                .HasNoKey()
                 .ToTable("usuariopublicacion")
                 .HasCharSet("utf8mb4")
                 .UseCollation("utf8mb4_unicode_ci");
@@ -260,15 +264,16 @@ public partial class LotrdbContext : DbContext
 
             entity.HasIndex(e => e.IdUsuario, "fkUsuarioPublicId_idx");
 
+            entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.IdPublicacion).HasColumnType("int(11)");
             entity.Property(e => e.IdUsuario).HasColumnType("int(11)");
 
-            entity.HasOne(d => d.IdPublicacionNavigation).WithMany()
+            entity.HasOne(d => d.IdPublicacionNavigation).WithMany(p => p.Usuariopublicacion)
                 .HasForeignKey(d => d.IdPublicacion)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkPublicacionId");
 
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany()
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Usuariopublicacion)
                 .HasForeignKey(d => d.IdUsuario)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkUsuarioPublicId");
@@ -276,8 +281,9 @@ public partial class LotrdbContext : DbContext
 
         modelBuilder.Entity<Usuariorol>(entity =>
         {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
             entity
-                .HasNoKey()
                 .ToTable("usuariorol")
                 .HasCharSet("utf8mb4")
                 .UseCollation("utf8mb4_unicode_ci");
@@ -286,15 +292,16 @@ public partial class LotrdbContext : DbContext
 
             entity.HasIndex(e => e.IdUsuario, "fkUsuarioRolId_idx");
 
+            entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.IdRol).HasColumnType("int(11)");
             entity.Property(e => e.IdUsuario).HasColumnType("int(11)");
 
-            entity.HasOne(d => d.IdRolNavigation).WithMany()
+            entity.HasOne(d => d.IdRolNavigation).WithMany(p => p.Usuariorol)
                 .HasForeignKey(d => d.IdRol)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkRolId");
 
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany()
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Usuariorol)
                 .HasForeignKey(d => d.IdUsuario)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkUsuarioRolId");

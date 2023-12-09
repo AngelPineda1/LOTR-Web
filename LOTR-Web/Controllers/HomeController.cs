@@ -78,7 +78,7 @@ namespace LOTR_Web.Controllers
                 var Claims = new List<Claim>
                     {
                         new("Id",User.Id.ToString()),
-                        new(ClaimTypes.Name,User.Correo),
+                        new(ClaimTypes.Name,User.IdInfoNavigation.Nombre),
                         new(ClaimTypes.Role, Admin ? "Admin" : "User")
                     };
                 var Identity = new ClaimsIdentity(Claims, CookieAuthenticationDefaults.AuthenticationScheme);
