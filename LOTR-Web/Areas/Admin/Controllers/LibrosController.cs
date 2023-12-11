@@ -62,10 +62,10 @@ namespace LOTR_Web.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "Escriba la tienda oficial");
             }
-            //if (libros.FechaPublicacion == DateTime.MinValue)
-            //{
-            //    ModelState.AddModelError("", "Ingrese la fecha de publicacion");
-            //}
+            if (vm.Libros.FechaPublicacion == DateTime.MinValue)
+            {
+                ModelState.AddModelError("", "Ingrese la fecha de publicacion");
+            }
             if (vm.Archivo != null)
             {
                 //MIME TYPE
@@ -83,7 +83,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
             {
                 
                 vm.Libros.IdUsuario = 1;
-                vm.Libros.FechaPublicacion = DateTime.Now;
+                
                 Libros x = new Libros()
                 {
                     Nombre = vm.Libros.Nombre,
@@ -135,6 +135,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
                 vm.Libros.Descripcion = datos.Descripcion;
                 vm.Libros.IdAutor = datos.IdAutor;
                 vm.Libros.Id=datos.Id;
+                vm.Libros.FechaPublicacion = datos.FechaPublicacion;
                 vm.Autor= _repo.AutorRepository.GetAllAutores().Select(x => new AutorModel()
                 {
                     Id = x.Id,
@@ -164,10 +165,10 @@ namespace LOTR_Web.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "Escriba la tienda oficial");
             }
-            //if (libros.FechaPublicacion == DateTime.MinValue)
-            //{
-            //    ModelState.AddModelError("", "Ingrese la fecha de publicacion");
-            //}
+            if (vm.Libros.FechaPublicacion == DateTime.MinValue)
+            {
+                ModelState.AddModelError("", "Ingrese la fecha de publicacion");
+            }
             if (vm.Archivo != null)
             {
                 //MIME TYPE
@@ -195,6 +196,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
                 datos.Nombre = vm.Libros.Nombre;
                 datos.Descripcion = vm.Libros.Descripcion;
                 datos.IdAutor = vm.Libros.IdAutor;
+                datos.FechaPublicacion = vm.Libros.FechaPublicacion;
                 
                 _repo.LibrosRepository.UpdateLibro(datos);
                 if (vm.Archivo != null)

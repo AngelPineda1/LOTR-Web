@@ -1,11 +1,10 @@
-.verObjectContainer > img{
-    height: 40rem;
-}
+
 .verObjectContainer{
     position: absolute;
     justify-content: center;
     margin-top: 16rem;
     display: flex;
+   
 }
 .objDivContainer{
     justify-content: center;
@@ -16,9 +15,20 @@
     height: 70%;
     display: flex;
     flex-direction: column;
-    background-color: red;
+    
 }
 .verObjectContainer>section{
     
     width: 100%;
+}
+.verObjectContainer > img{
+    height:100px;
+    width:100px;
+}
+.objDivContainer {
+    background-color: rgba(255, 255, 255, 0.200);
+    backdrop-filter: blur(.5rem);
+    border-radius: 5px;
+    box-shadow: 1rem 1.5rem 1rem 1rem rgba(0, 0, 0, 0.386);
+    
 }
