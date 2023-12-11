@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="~/css/ObjViewStyles.css" rel="stylesheet" />
+</head>
+<body>
+    <main>
+        <div class="verObjectContainer">
+            <img src="~/libros/@(Model.Id).png" />
+            <div class="objDivContainer">
+
+                <section>
+                    <h1>@Model.Nombre</h1>
+                </section>
+                <section>
+                    <h3>@Model.Editorial</h3>
+                    <p>@Model.Descripcion</p>
+                    <p>@Model.FechaPublicacion.ToShortDateString()</p>
+                </section>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>

@@ -24,32 +24,35 @@ namespace LOTR_Web.Repositories.Repositorios
         {
             return _context.Usuario.Include(x => x.IdInfo).FirstOrDefault(x => x.Id == Id).IdInfoNavigation.Nombre;
         }
-        public AdminPublicacionesViewModel GetPublicaciones() {
-            bool existeFoto(int id)
+        public AdminPublicacionesViewModel GetPublicaciones()
+        {
+            Func<int?, bool> existeFoto = id =>
             {
-                string rutaImagen = $"wwwroot/publicaciones/{id}.png";
-                if (System.IO.File.Exists(rutaImagen))
+                if (id.HasValue)
                 {
-                    return true;
+                    string rutaImagen = $"wwwroot/publicaciones/{id.Value}.png";
+                    return System.IO.File.Exists(rutaImagen);
                 }
                 else
                 {
                     return false;
                 }
-            }
+            };
+
             AdminPublicacionesViewModel vm = new();
-            vm.Publicaciones = _context.Usuariopublicacion.Include(x => x.IdPublicacionNavigation).Include(x => x.IdUsuarioNavigation).Include(x=>x.IdUsuarioNavigation.IdInfoNavigation).OrderByDescending(x=>x.Id).Select(x=>new PublicacionesModel 
+            vm.Publicaciones = _context.Usuariopublicacion.Include(x => x.IdPublicacionNavigation).Include(x => x.IdUsuarioNavigation).Include(x => x.IdUsuarioNavigation.IdInfoNavigation).OrderByDescending(x => x.Id).Select(x => new PublicacionesModel
             {
                 Fecha = x.IdPublicacionNavigation.Fecha,
                 Id = x.IdPublicacion,
                 Texto = x.IdPublicacionNavigation.Texto,
                 UserId = x.IdUsuario,
                 UserName = x.IdUsuarioNavigation.IdInfoNavigation.Nombre,
-                Archivo = true
+                Archivo = existeFoto(x.IdUsuario)
             });
             vm.AgregarPublicaciones = new();
             return vm;
         }
+
         public void InsertPublicacion(Publicaciones p, int Id)
         {
             base.Insert(p);
