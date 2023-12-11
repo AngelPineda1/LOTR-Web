@@ -17,12 +17,15 @@
     flex-direction: column;
     
 }
+/*h1,h3,p{
+    color:white;
+}*/
 .verObjectContainer>section{
     
     width: 100%;
 }
 .verObjectContainer > img{
-    height:100px;
+    height:100%;
     width:100px;
 }
 .objDivContainer {
@@ -30,5 +33,4 @@
     backdrop-filter: blur(.5rem);
     border-radius: 5px;
     box-shadow: 1rem 1.5rem 1rem 1rem rgba(0, 0, 0, 0.386);
-    
 }
