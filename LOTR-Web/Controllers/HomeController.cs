@@ -46,9 +46,16 @@ namespace LOTR_Web.Controllers
             {
                 ModelState.AddModelError("","No proporcionaste un correo válido");
             }
-            if (ValidarCorreo(vm.Correo ?? ""))
+            if (!string.IsNullOrEmpty(vm.Correo))
             {
-                ModelState.AddModelError("", "No proporcionaste un correo válido");
+                
+                bool mailValido = ValidarCorreo(vm.Correo);
+
+                if (!mailValido) 
+                {
+                    ModelState.AddModelError("", "No proporcionaste un correo válido");
+                
+                }
             }
             if (string.IsNullOrEmpty(vm.Contraseña))
             {
@@ -74,7 +81,7 @@ namespace LOTR_Web.Controllers
             if (ModelState.IsValid)
             {
                 Usuario? User = _repo.UsuarioRepository.RegistrarUsuario(vm);
-                if (User == null)
+                if (User != null)
                 {
                     ModelState.AddModelError("","Este usuario ya existe");
                     return View();
