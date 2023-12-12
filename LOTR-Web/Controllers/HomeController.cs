@@ -85,7 +85,7 @@ namespace LOTR_Web.Controllers
             if (ModelState.IsValid)
             {
                 Usuario? User = _repo.UsuarioRepository.RegistrarUsuario(vm);
-                if (User != null)
+                if (User == null)
                 {
                     ModelState.AddModelError("","Este usuario ya existe");
                     return View();
