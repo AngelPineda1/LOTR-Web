@@ -65,6 +65,10 @@ namespace LOTR_Web.Controllers
             {
                 ModelState.AddModelError("", "No proporcionaste un nombre válido");
             }
+            if (vm.Foto==null) 
+            {
+                ModelState.AddModelError("","No proporcionaste una fotografía para tu perfil");
+            }
             if (vm.Foto != null)
             {
                 //MIME TYPE
