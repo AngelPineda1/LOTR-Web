@@ -38,9 +38,9 @@ namespace LOTR_Web.Areas.User.Controllers
                 {
                     ModelState.AddModelError("", "Solo se permiten imagenes PNG");
                 }
-                if (vm.AgregarPublicaciones.Archivo.Length > 500 * 1024)
+                if (vm.AgregarPublicaciones.Archivo.Length > 1000 * 1024)
                 {
-                    ModelState.AddModelError("", "Solo se permiten archivos no mayores a 500KB");
+                    ModelState.AddModelError("", "Solo se permiten archivos no mayores a 1MB");
                 }
             }
             if (ModelState.IsValid)
