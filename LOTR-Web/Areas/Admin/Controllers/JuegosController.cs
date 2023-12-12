@@ -75,7 +75,6 @@ namespace LOTR_Web.Areas.Admin.Controllers
             }
             if(!ModelState.IsValid)
             {
-                vm.IdUsuario = 1;
                 Juegos x= new Juegos()
                 {
                     Nombre= vm.Nombre,

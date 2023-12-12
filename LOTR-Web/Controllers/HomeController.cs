@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace LOTR_Web.Controllers
 {
@@ -44,6 +45,10 @@ namespace LOTR_Web.Controllers
             if (string.IsNullOrEmpty(vm.Correo))
             {
                 ModelState.AddModelError("","No proporcionaste un correo válido");
+            }
+            if (ValidarCorreo(vm.Correo ?? ""))
+            {
+                ModelState.AddModelError("", "No proporcionaste un correo válido");
             }
             if (string.IsNullOrEmpty(vm.Contraseña))
             {
@@ -108,7 +113,11 @@ namespace LOTR_Web.Controllers
 
             }
             return View();
-
+            bool ValidarCorreo(string correo)
+            {
+                string regex = @"^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$";
+                return Regex.IsMatch(correo, regex);
+            }
         }
         public IActionResult Login() 
         {

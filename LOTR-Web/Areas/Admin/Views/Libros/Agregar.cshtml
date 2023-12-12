@@ -18,6 +18,7 @@
 
     </div>
     ¿Dirigido por?
+    <input type="hidden" asp-for="Libros.IdUsuario" value="@(User.Claims.FirstOrDefault(x=>x.Type == "Id")?.Value)" />
     <select asp-for="Libros.IdAutor" asp-items="@(new SelectList(Model.Autor,"Id","Nombre"))">
         
     </select>

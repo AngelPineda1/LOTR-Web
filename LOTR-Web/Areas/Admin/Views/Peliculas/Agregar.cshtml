@@ -9,7 +9,7 @@
     <input type="text" asp-for="Peliculas.Nombre" />
     <label>Descripción</label>
     <textarea asp-for="Peliculas.Descripcion"></textarea>
-    
+    <input type="hidden" asp-for="Peliculas.IdUsuario" value="@(User.Claims.FirstOrDefault(x=>x.Type == "Id")?.Value)" />
     <div>
         <label for="imagen">Portada</label>
         <input type="file" id="imagen" accept="image/png" onchange="previewImagen()" asp-for="Archivo" />

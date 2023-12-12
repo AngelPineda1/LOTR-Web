@@ -13,19 +13,18 @@
     border: .5px solid rgba(0, 0, 0, 0.1);
     width: 70%;
     height: auto;
-    background-color: lightgray;
+    background-color: #DBDADA;
     box-shadow: 0 5px 20px 5px rgba(255, 255, 255, 0.514);
     margin: 0 auto;
     text-align: center;
-    margin-top: 1rem;   
+    margin-top: 1rem;
 }
-.foroSection>form{
-    
+.foroSection > form {
     box-shadow: 0 5px 20px 5px rgba(255, 255, 255, 0.514);
     border: 1px solid rgba(0, 0, 0, 0.276);
     margin-top: 5rem;
     margin-left: 15%;
-    background-color: lightgray;
+    background-color: #DBDADA;
     width: 70%;
     display: flex;
     text-align: center;

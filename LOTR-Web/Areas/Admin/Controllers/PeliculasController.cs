@@ -78,7 +78,7 @@ namespace LOTR_Web.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                vm.Peliculas.IdUsuario = 1;
+
                 Peliculas peliculas = new Peliculas()
                 {
                     Nombre=vm.Peliculas.Nombre,

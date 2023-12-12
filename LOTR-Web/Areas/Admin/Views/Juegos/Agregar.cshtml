@@ -24,6 +24,7 @@
     </select>
     <label>Fecha de publicacion</label>
     <input type="date" asp-for="FechaPublicacion" />
+    <input type="hidden" asp-for="IdUsuario" value="@(User.Claims.FirstOrDefault(x=>x.Type == "Id")?.Value)" />
     <input type="submit" />
     <a href="~/Admin/Juegos">
         <input type="button" value="Cancelar" />

@@ -82,7 +82,6 @@ namespace LOTR_Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 
-                vm.Libros.IdUsuario = 1;
                 
                 Libros x = new Libros()
                 {

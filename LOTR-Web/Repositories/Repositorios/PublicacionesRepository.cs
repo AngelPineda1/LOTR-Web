@@ -47,7 +47,7 @@ namespace LOTR_Web.Repositories.Repositorios
                 Texto = x.IdPublicacionNavigation.Texto,
                 UserId = x.IdUsuario,
                 UserName = x.IdUsuarioNavigation.IdInfoNavigation.Nombre,
-                Archivo = existeFoto(x.IdUsuario)
+                Archivo = existeFoto(x.IdPublicacion)
             });
             vm.AgregarPublicaciones = new();
             return vm;
